@@ -1,6 +1,14 @@
 import express from "express";
 import mongoose from "mongoose";
 import "dotenv/config";
+import userRouter from "./routes/user.route.js";
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+app.use("/api/user", userRouter);
+
 mongoose
   .connect(process.env.MONGOSECRET)
   .then(() => {
@@ -12,4 +20,3 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
-const app = express();
